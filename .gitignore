@@ -1,0 +1,9 @@
+Tests/gitRunner/*
+
+*:*
+Thumbs.db
+*.vbw
+*.frx
+*.SCC
+*.lib
+*.exe
