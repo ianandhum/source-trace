@@ -95,13 +95,13 @@ Public Function getTasks() As Collection
 End Function
 
 
-Public Property Get tasks() As Collection
+Public Property Get Tasks() As Collection
 'used when retrieving value of a property, on the right side of an assignment.
 'Syntax: Debug.Print X.Tasks
     If Not mvarIsLoaded Then
         loadTasksFromDB
     End If
-    Set tasks = mvarTasks
+    Set Tasks = mvarTasks
 End Property
 
 Public Property Get IsLoaded() As Boolean

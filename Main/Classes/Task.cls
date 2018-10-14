@@ -213,10 +213,10 @@ Private Function getNullIfEmpty(data As String)
     getNullIfEmpty = result
 End Function
 
-Public Function LoadSingleton(taskId As Integer, Optional loadAssocFields As Boolean = True) As Boolean
+Public Function LoadSingleton(TaskId As Integer, Optional loadAssocFields As Boolean = True) As Boolean
     If DbConnection.State = adStateOpen Then
         Dim tmpStore As Recordset
-        Set tmpStore = selectFromDB(" [SourceTrace].[dbo].[tb_task] ", " task_id = " & taskId)
+        Set tmpStore = selectFromDB(" [SourceTrace].[dbo].[tb_task] ", " task_id = " & TaskId)
         If querySuccess Then initTaskWithRecord tmpStore
     End If
 End Function
@@ -384,10 +384,10 @@ Public Property Get TaskName() As String
 End Property
 
 
-Public Property Get taskId() As Integer
+Public Property Get TaskId() As Integer
 'used when retrieving value of a property, on the right side of an assignment.
 'Syntax: Debug.Print X.TaskId
-    taskId = mvarTaskId
+    TaskId = mvarTaskId
 End Property
 
 

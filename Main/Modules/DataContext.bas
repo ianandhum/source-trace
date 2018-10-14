@@ -4,6 +4,7 @@ Public querySuccess As Boolean
 
 'table names in the database
 Public Const dbTaskTable = "[SourceTrace].[dbo].[tb_task]"
+Public Const dbProjectTable = " [SourceTrace].[dbo].[tb_project] "
 
 'Connection String
 Private Const ConnectionString = "Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;User ID=virtualbox\Code;Initial Catalog=SourceTrace;Data Source=(local)\SQLEXPRESS"
