@@ -19,13 +19,8 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Dim mytask As New Task
-Dim tasks As New TaskManager
-
+Dim Projects As ProjectManager
 
 Private Sub Form_Load()
     InitializeConnection
-    tasks.IsDebug = True
-    tasks.loadTasksFromDB
-    
 End Sub
