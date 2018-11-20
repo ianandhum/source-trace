@@ -155,7 +155,6 @@ Public Function AddNew() As Integer
 End Function
 
 
-
 Public Function Delete() As Integer
     mvarIsDeleted = True
 End Function
