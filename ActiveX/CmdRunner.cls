@@ -130,6 +130,7 @@ Private Declare Function OemToCharBuff _
 '
 Public Function GetCommandOutput( _
  sCommandLine As String, _
+ cwd As String, _
  Optional blnStdOut As Boolean = True, _
  Optional blnStdErr As Boolean = False, _
  Optional blnOEMConvert As Boolean = True _
@@ -196,7 +197,7 @@ Public Function GetCommandOutput( _
     End With
 
     If CreateProcess(vbNullString, sCommandLine, ByVal 0&, ByVal 0&, 1, 0&, _
-     ByVal 0&, vbNullString, si, pi) Then
+     ByVal 0&, cwd, si, pi) Then
 
         ' Close thread handle - we don't need it
         Call CloseHandle(pi.hThread)
