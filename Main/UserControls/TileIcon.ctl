@@ -13,26 +13,17 @@ Begin VB.UserControl TileIcon
    PaletteMode     =   0  'Halftone
    ScaleHeight     =   3600
    ScaleWidth      =   3015
-   Begin VB.PictureBox pbxIcon 
-      Appearance      =   0  'Flat
-      BackColor       =   &H00EEEEEE&
-      BorderStyle     =   0  'None
-      ForeColor       =   &H80000008&
-      Height          =   2535
+   Begin VB.Image pbxIcon 
+      Height          =   2655
       Left            =   120
-      ScaleHeight     =   2535
-      ScaleWidth      =   2775
-      TabIndex        =   0
+      Stretch         =   -1  'True
       Top             =   120
       Width           =   2775
    End
    Begin VB.Label lblText 
       Alignment       =   2  'Center
-      Appearance      =   0  'Flat
-      BackColor       =   &H00EEEEEE&
-      BackStyle       =   0  'Transparent
       BeginProperty Font 
-         Name            =   "@Arial Unicode MS"
+         Name            =   "Arial"
          Size            =   12
          Charset         =   0
          Weight          =   400
@@ -40,12 +31,11 @@ Begin VB.UserControl TileIcon
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H80000008&
       Height          =   555
       Left            =   150
-      TabIndex        =   1
+      TabIndex        =   0
       Top             =   2880
-      Width           =   2595
+      Width           =   2715
    End
 End
 Attribute VB_Name = "TileIcon"
@@ -69,6 +59,9 @@ Property Let CaptionText(newCaptionText As String)
  lblText.Caption = mCaptionText
  PropertyChanged "CaptionText"
 End Property
+
+
+
 
 Private Sub UserControl_Click()
     RaiseEvent Click

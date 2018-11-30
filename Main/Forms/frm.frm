@@ -1,122 +1,273 @@
 VERSION 5.00
-Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "COMCTL32.OCX"
-Begin VB.Form frm 
-   BackColor       =   &H00EEEEEE&
+Begin VB.Form frmTaskView 
+   BackColor       =   &H00FFFFFF&
    BorderStyle     =   0  'None
-   Caption         =   "Form1"
-   ClientHeight    =   5565
+   Caption         =   "Tasks"
+   ClientHeight    =   8805
    ClientLeft      =   5175
    ClientTop       =   2820
-   ClientWidth     =   11145
+   ClientWidth     =   18705
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
    MinButton       =   0   'False
-   ScaleHeight     =   5565
-   ScaleWidth      =   11145
+   ScaleHeight     =   8805
+   ScaleWidth      =   18705
    ShowInTaskbar   =   0   'False
-   Begin VB.TextBox Text1 
+   Tag             =   "FormHost"
+   Begin VB.PictureBox pbxContent 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00FCFCFC&
       BorderStyle     =   0  'None
-      BeginProperty DataFormat 
-         Type            =   1
-         Format          =   "0"
-         HaveTrueFalseNull=   0
-         FirstDayOfWeek  =   0
-         FirstWeekOfYear =   0
-         LCID            =   1033
-         SubFormatType   =   1
-      EndProperty
-      Height          =   375
-      Left            =   4680
-      TabIndex        =   4
-      Text            =   "Text1"
-      Top             =   960
-      Width           =   1575
-   End
-   Begin ComctlLib.TreeView TreeView1 
-      Height          =   5535
-      Left            =   0
-      TabIndex        =   2
-      Top             =   0
-      Width           =   2895
-      _ExtentX        =   5106
-      _ExtentY        =   9763
-      _Version        =   327682
-      LabelEdit       =   1
-      Style           =   7
-      Appearance      =   0
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Consolas"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-   End
-   Begin ComctlLib.ProgressBar ProgressBar1 
-      Height          =   495
-      Left            =   3720
-      TabIndex        =   3
-      Top             =   2280
-      Width           =   5175
-      _ExtentX        =   9128
-      _ExtentY        =   873
-      _Version        =   327682
-      Appearance      =   1
-   End
-   Begin VB.CommandButton Command2 
-      Caption         =   "Cancel"
-      Height          =   495
-      Left            =   7560
+      ForeColor       =   &H80000008&
+      Height          =   6495
+      Left            =   240
+      ScaleHeight     =   6495
+      ScaleWidth      =   18255
       TabIndex        =   1
-      Top             =   4680
-      Width           =   1335
+      Top             =   1920
+      Width           =   18255
+      Begin VB.PictureBox pbxTaskTile 
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BorderStyle     =   0  'None
+         DragIcon        =   "frm.frx":0000
+         DragMode        =   1  'Automatic
+         ForeColor       =   &H80000008&
+         Height          =   1215
+         Index           =   0
+         Left            =   13800
+         ScaleHeight     =   1215
+         ScaleWidth      =   3615
+         TabIndex        =   4
+         Top             =   120
+         Width           =   3615
+         Begin VB.Label lblTaskTileHeader 
+            BackStyle       =   0  'Transparent
+            Caption         =   "TaskTileHeadTemplate"
+            BeginProperty Font 
+               Name            =   "Arial Narrow"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Index           =   0
+            Left            =   120
+            TabIndex        =   7
+            Top             =   120
+            Width           =   1935
+         End
+         Begin VB.Label lblTaskTileContent 
+            BackStyle       =   0  'Transparent
+            Caption         =   "TaskTileContentTemplate"
+            BeginProperty Font 
+               Name            =   "Arial"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Index           =   0
+            Left            =   120
+            TabIndex        =   6
+            Top             =   480
+            Width           =   3375
+         End
+         Begin VB.Label lblTaskTileDate 
+            Caption         =   "  TaskTileDate"
+            BeginProperty Font 
+               Name            =   "Arial Narrow"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   255
+            Index           =   0
+            Left            =   120
+            TabIndex        =   5
+            Top             =   840
+            Width           =   975
+         End
+      End
+      Begin VB.PictureBox pbxCard 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00EEEEEE&
+         BorderStyle     =   0  'None
+         DragIcon        =   "frm.frx":C922
+         DragMode        =   1  'Automatic
+         ForeColor       =   &H80000008&
+         Height          =   5175
+         Index           =   0
+         Left            =   720
+         ScaleHeight     =   5175
+         ScaleWidth      =   4215
+         TabIndex        =   2
+         Tag             =   "Card"
+         Top             =   360
+         Width           =   4215
+         Begin VB.Label lblCardHeader 
+            Alignment       =   2  'Center
+            BackStyle       =   0  'Transparent
+            Caption         =   "CardHeaderTemplate"
+            BeginProperty Font 
+               Name            =   "Consolas"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   495
+            Index           =   0
+            Left            =   0
+            TabIndex        =   3
+            Top             =   240
+            Width           =   4215
+         End
+      End
    End
-   Begin VB.CommandButton Command1 
-      Caption         =   "Save"
-      Height          =   495
-      Left            =   9240
+   Begin VB.PictureBox pbxHead 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00EFEFEF&
+      BorderStyle     =   0  'None
+      ForeColor       =   &H80000008&
+      Height          =   1575
+      Left            =   240
+      ScaleHeight     =   1575
+      ScaleWidth      =   18225
       TabIndex        =   0
-      Top             =   4680
-      Width           =   1335
-   End
-   Begin ComctlLib.ImageList ImageList1 
-      Left            =   3360
-      Top             =   1320
-      _ExtentX        =   1005
-      _ExtentY        =   1005
-      BackColor       =   16777215
-      ImageWidth      =   32
-      ImageHeight     =   32
-      MaskColor       =   12632256
-      _Version        =   327682
-      BeginProperty Images {0713E8C2-850A-101B-AFC0-4210102A8DA7} 
-         NumListImages   =   3
-         BeginProperty ListImage1 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "frm.frx":0000
-            Key             =   "Leaf"
-         EndProperty
-         BeginProperty ListImage2 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "frm.frx":005E
-            Key             =   "Open"
-         EndProperty
-         BeginProperty ListImage3 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "frm.frx":00BC
-            Key             =   "Closed"
-         EndProperty
-      EndProperty
+      Top             =   120
+      Width           =   18225
    End
 End
-Attribute VB_Name = "frm"
+Attribute VB_Name = "frmTaskView"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Dim Projects As ProjectManager
+Dim preserveBackColor
+    
 
+Private Sub pbxCard_DragDrop(Index As Integer, Source As Control, X As Single, Y As Single)
+    If Source.Tag = "Card" Then Exit Sub
+    
+    Set Source.Container = pbxCard(Index)
+    Source.Left = 360
+    Source.Top = Y - 100
+    pbxCard(Index).BackColor = preserveBackColor
+    
+    
+    
+End Sub
+
+Private Sub pbxCard_DragOver(Index As Integer, Source As Control, X As Single, Y As Single, State As Integer)
+    
+    For i = 0 To pbxCard.Count - 1
+        If i <> Index Then
+            pbxCard(i).BackColor = preserveBackColor
+        End If
+    Next i
+    pbxCard(Index).BackColor = &H77FFDD
+    
+End Sub
+
+Private Sub pbxContent_DragDrop(Source As Control, X As Single, Y As Single)
+    
+    If Source.Tag = "Card" Then
+        Source.Left = X
+    End If
+        
+End Sub
 Private Sub Form_Load()
-    InitializeConnection
+    alignContainers
+    
+    preserveBackColor = pbxCard(0).BackColor
+    
+    Dim lastIndex As Integer
+    
+    lastIndex = CreateTaskTile()
+    
+    Set pbxTaskTile(lastIndex).Container = pbxCard(0)
+    
+    pbxTaskTile(lastIndex).Top = 660
+    pbxTaskTile(lastIndex).Left = 360
+    SetTileInfo lastIndex, "This Head", "Content man issue", "Nov 19 2018"
+    
+    For i = 1 To 2
+        lastIndex = CreateCard()
+        
+        Set pbxCard(lastIndex).Container = pbxContent
+        
+        pbxCard(lastIndex).Top = pbxCard(i - 1).Top
+        pbxCard(lastIndex).Left = pbxCard(i - 1).Left + pbxCard(i - 1).width + 560
+    Next i
+End Sub
+Private Sub Form_Resize()
+    alignContainers
+End Sub
+
+
+'Functions
+
+Private Sub alignContainers()
+    pbxHead.Top = 100
+    pbxHead.Left = 100
+    pbxHead.width = Me.width - 200
+    pbxHead.height = 1300
+    pbxContent.Top = 100 + pbxHead.Top + pbxHead.height
+    pbxContent.Left = 100
+    pbxContent.width = Me.width - 200
+    pbxContent.height = Me.height - pbxContent.Top - 100
+    
+End Sub
+Private Function CreateCard() As Integer
+    
+    'load the contents
+    Load pbxCard(pbxCard.Count)
+    Load lblCardHeader(lblCardHeader.Count)
+    
+    Set lblCardHeader(lblCardHeader.Count - 1).Container = pbxCard(pbxCard.Count - 1)
+    
+    pbxCard(pbxCard.Count - 1).Visible = True
+    lblCardHeader(lblCardHeader.Count - 1).Visible = True
+
+    CreateCard = pbxCard.Count - 1
+End Function
+
+Private Function CreateTaskTile() As Integer
+    
+    'load the contents
+    Load pbxTaskTile(pbxTaskTile.Count)
+    Load lblTaskTileHeader(lblTaskTileHeader.Count)
+    Load lblTaskTileContent(lblTaskTileContent.Count)
+    Load lblTaskTileDate(lblTaskTileDate.Count)
+    
+    Set lblTaskTileHeader(lblTaskTileHeader.Count - 1).Container = pbxTaskTile(pbxTaskTile.Count - 1)
+    Set lblTaskTileContent(lblTaskTileContent.Count - 1).Container = pbxTaskTile(pbxTaskTile.Count - 1)
+    Set lblTaskTileDate(lblTaskTileDate.Count - 1).Container = pbxTaskTile(pbxTaskTile.Count - 1)
+    
+    pbxTaskTile(pbxTaskTile.Count - 1).Visible = True
+    lblTaskTileHeader(lblTaskTileHeader.Count - 1).Visible = True
+    lblTaskTileContent(lblTaskTileContent.Count - 1).Visible = True
+    lblTaskTileDate(lblTaskTileDate.Count - 1).Visible = True
+    
+    CreateTaskTile = pbxTaskTile.Count - 1
+End Function
+
+Private Sub SetTileInfo(Index As Integer, header As String, content As String, dt As String)
+    lblTaskTileHeader(Index).Caption = header
+    lblTaskTileContent(Index).Caption = content
+    lblTaskTileDate(Index).Caption = "  " & dt
 End Sub
 

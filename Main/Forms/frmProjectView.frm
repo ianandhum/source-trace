@@ -23,7 +23,7 @@ Begin VB.Form frmProjectView
       ForeColor       =   &H8000000B&
       Height          =   1275
       Index           =   1
-      Left            =   2310
+      Left            =   2025
       ScaleHeight     =   1275
       ScaleWidth      =   1605
       TabIndex        =   14
@@ -32,7 +32,7 @@ Begin VB.Form frmProjectView
       Begin VB.Label lblNavTile 
          Alignment       =   2  'Center
          BackStyle       =   0  'Transparent
-         Caption         =   "label_text_here"
+         Caption         =   "Branch"
          BeginProperty Font 
             Name            =   "Segoe UI"
             Size            =   8.25
@@ -65,9 +65,9 @@ Begin VB.Form frmProjectView
       Enabled         =   0   'False
       Height          =   495
       Index           =   2
-      Left            =   7575
+      Left            =   8025
       TabIndex        =   11
-      Top             =   7560
+      Top             =   7605
       Width           =   2295
    End
    Begin VB.CommandButton btnFrmStats 
@@ -75,9 +75,9 @@ Begin VB.Form frmProjectView
       Caption         =   "Log"
       Height          =   495
       Index           =   1
-      Left            =   5295
+      Left            =   5745
       TabIndex        =   10
-      Top             =   7560
+      Top             =   7605
       Width           =   2295
    End
    Begin VB.CommandButton btnFrmStats 
@@ -85,9 +85,9 @@ Begin VB.Form frmProjectView
       Caption         =   "Commits"
       Height          =   495
       Index           =   0
-      Left            =   3015
+      Left            =   3465
       TabIndex        =   9
-      Top             =   7560
+      Top             =   7605
       Width           =   2295
    End
    Begin VB.PictureBox pbxStats 
@@ -96,11 +96,11 @@ Begin VB.Form frmProjectView
       BorderStyle     =   0  'None
       ForeColor       =   &H80000008&
       Height          =   1935
-      Left            =   3010
+      Left            =   3465
       ScaleHeight     =   1935
       ScaleWidth      =   17535
       TabIndex        =   5
-      Top             =   8040
+      Top             =   8085
       Width           =   17535
       Begin VB.Frame frmStats 
          Appearance      =   0  'Flat
@@ -134,9 +134,9 @@ Begin VB.Form frmProjectView
          ForeColor       =   &H80000008&
          Height          =   1215
          Index           =   0
-         Left            =   0
+         Left            =   450
          TabIndex        =   6
-         Top             =   0
+         Top             =   90
          Width           =   5895
       End
    End
@@ -160,11 +160,11 @@ Begin VB.Form frmProjectView
          ForeColor       =   &H8000000B&
          Height          =   1275
          Index           =   0
-         Left            =   480
+         Left            =   195
          ScaleHeight     =   1275
          ScaleWidth      =   1605
          TabIndex        =   12
-         Top             =   90
+         Top             =   105
          Width           =   1605
          Begin VB.Image imgNavTile 
             Height          =   855
@@ -178,7 +178,7 @@ Begin VB.Form frmProjectView
          Begin VB.Label lblNavTile 
             Alignment       =   2  'Center
             BackStyle       =   0  'Transparent
-            Caption         =   "label_text_here"
+            Caption         =   "Commit "
             BeginProperty Font 
                Name            =   "Segoe UI"
                Size            =   8.25
@@ -190,9 +190,9 @@ Begin VB.Form frmProjectView
             EndProperty
             Height          =   255
             Index           =   0
-            Left            =   60
+            Left            =   45
             TabIndex        =   13
-            Top             =   915
+            Top             =   900
             Width           =   1500
          End
       End
@@ -202,10 +202,11 @@ Begin VB.Form frmProjectView
       Left            =   0
       TabIndex        =   1
       Top             =   1920
-      Width           =   2895
-      _ExtentX        =   5106
+      Width           =   3390
+      _ExtentX        =   5980
       _ExtentY        =   13785
       _Version        =   327682
+      Indentation     =   51
       LabelEdit       =   1
       LineStyle       =   1
       Style           =   7
@@ -223,15 +224,16 @@ Begin VB.Form frmProjectView
    End
    Begin RichTextLib.RichTextBox rtbFileView 
       Height          =   5655
-      Left            =   3010
+      Left            =   3480
       TabIndex        =   2
       Top             =   1920
-      Width           =   17520
-      _ExtentX        =   30903
+      Width           =   17055
+      _ExtentX        =   30083
       _ExtentY        =   9975
       _Version        =   393217
-      BackColor       =   16448250
+      BackColor       =   16645629
       BorderStyle     =   0
+      Enabled         =   -1  'True
       ScrollBars      =   3
       Appearance      =   0
       TextRTF         =   $"frmProjectView.frx":FE06
@@ -253,16 +255,16 @@ Begin VB.Form frmProjectView
       FillStyle       =   0  'Solid
       Height          =   495
       Index           =   2
-      Left            =   3010
-      Top             =   7560
+      Left            =   3465
+      Top             =   7590
       Width           =   17535
    End
    Begin VB.Line lnHeader 
       BorderColor     =   &H00C0C0C0&
-      X1              =   3000
-      X2              =   3000
-      Y1              =   1440
-      Y2              =   9840
+      X1              =   3450
+      X2              =   3450
+      Y1              =   1470
+      Y2              =   9870
    End
    Begin VB.Label lblHeaderLineText 
       BackStyle       =   0  'Transparent
@@ -278,10 +280,10 @@ Begin VB.Form frmProjectView
       EndProperty
       Height          =   375
       Index           =   1
-      Left            =   3240
+      Left            =   3615
       TabIndex        =   4
-      Top             =   1545
-      Width           =   5655
+      Top             =   1560
+      Width           =   11835
    End
    Begin VB.Label lblHeaderLineText 
       BackStyle       =   0  'Transparent
@@ -310,9 +312,9 @@ Begin VB.Form frmProjectView
       FillStyle       =   0  'Solid
       Height          =   495
       Index           =   1
-      Left            =   3000
+      Left            =   3465
       Top             =   1440
-      Width           =   17535
+      Width           =   17070
    End
    Begin VB.Shape shpHeaderLine 
       BorderColor     =   &H00808080&
@@ -323,7 +325,7 @@ Begin VB.Form frmProjectView
       Index           =   0
       Left            =   0
       Top             =   1440
-      Width           =   3015
+      Width           =   3465
    End
 End
 Attribute VB_Name = "frmProjectView"
@@ -331,18 +333,36 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Dim WithEvents runCmd As CmdRunner
+Attribute runCmd.VB_VarHelpID = -1
+Dim SearchPath As String, FindStr As String
 
 Private InitialControlList() As ControlInitial
 
-Private Sub Form_Load()
+Private Sub btnFrmStats_Click(Index As Integer)
+For Each frmStat In frmStats
+    frmStat.Visible = False
+    
+Next
+For Each btnStat In btnFrmStats
+    btnStat.Enabled = True
+    
+Next
+frmStats(Index).Visible = True
+btnFrmStats(Index).Enabled = False
 
+End Sub
+
+Private Sub Form_Load()
     InitialControlList = GetLocation(Me)
     ReSizePosForm Me, Me.height, Me.width, Me.Left, Me.Top, True
     ResizeShapes
     initNavTiles
-    
+    initTreeView
+    Set runCmd = New CmdRunner
     
 End Sub
+
 
 Private Sub Form_Resize()
     ResizeControls Me, InitialControlList, True
@@ -350,12 +370,12 @@ Private Sub Form_Resize()
 End Sub
 Private Sub ResizeShapes()
     
-    lnHeader.Y1 = shpHeaderLine(0).Top
-    lnHeader.Y2 = frmProjectView.height
-    lnHeader.X1 = tvFileNodes.Left + tvFileNodes.width + 100
-    lnHeader.X2 = tvFileNodes.Left + tvFileNodes.width + 100
+    'lnHeader.Y1 = shpHeaderLine(0).Top
+    'lnHeader.Y2 = frmProjectView.height
+    'lnHeader.X1 = tvFileNodes.Left + tvFileNodes.width + 1
+    'lnHeader.X2 = tvFileNodes.Left + tvFileNodes.width + 1
     pbxStats.Top = shpHeaderLine(2).Top + shpHeaderLine(2).height - 2
-    pbxStats.Left = tvFileNodes.Left + tvFileNodes.width + 120
+    'pbxStats.Left = tvFileNodes.Left + tvFileNodes.width + 20
     pbxStats.height = Me.height - shpHeaderLine(2).Top
     For i = 0 To frmStats.Count - 1
         frmStats(i).height = pbxStats.height
@@ -370,30 +390,97 @@ Private Sub ResizeShapes()
 End Sub
 
 Private Sub initNavTiles()
+
     For i = 0 To pbxNavTiles.Count - 1
         pbxNavTiles(i).BackColor = &HEEEEEE
         pbxNavTiles(i).BorderStyle = BorderStyleConstants.vbTransparent
     Next i
     
 End Sub
-
-Private Sub imgNavTile_Click(Index As Integer)
-    MsgBox Index
-    Me.Hide
-    frm.Show
-    frm.WindowState = 2
+Private Sub initTreeView()
+    Dim FileSize As Long
+    Dim NumFiles As Integer, NumDirs As Integer
+    Dim fileM As New FileManager
     
+    
+    Screen.MousePointer = vbHourglass
+    SearchPath = "C:\Users\Code\Documents\SourceTrace\SRC"
+    FindStr = "*"
+    FileSize = fileM.createTreeView(SearchPath, FindStr, NumFiles, NumDirs, tvFileNodes)
+    Screen.MousePointer = vbDefault
+
 End Sub
 
 Private Sub imgNavTile_MouseMove(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
-    pbxNavTiles(Index).BorderStyle = BorderStyleConstants.vbBSSolid
-    For i = 0 To pbxNavTiles.Count - 1
-        If Index <> i Then
-            pbxNavTiles(i).BackColor = &HEEEEEE
-            pbxNavTiles(i).BorderStyle = BorderStyleConstants.vbTransparent
+    
+    SetCursor LoadCursor(0, IDC_HAND)
+    
+    
+End Sub
+
+
+
+
+
+
+
+Private Sub tvFileNodes_NodeClick(ByVal Node As ComctlLib.Node)
+    If Node.Children = 0 Then
+        Dim diffPath$, curPath$, cmdToRun$
+        
+        diffPath = Replace(Node.Key, SearchPath, " ")
+        curPath = SearchPath
+        rtbFileView.Text = ""
+        cmdToRun = "git diff " & diffPath
+        runCmd.GetCommandOutput cmdToRun, SearchPath, True, True, False
+        'rtbFileView.LoadFile Node.Key, RichTextLib.rtfCFText
+        lblHeaderLineText(1).Caption = diffPath
+    
+    End If
+    
+End Sub
+Private Sub runCmd_OutputAvailable(ByVal output As String)
+
+    rtbFileView.Text = rtbFileView.Text + output
+    
+    Dim res() As String
+    Dim lastPos As Integer
+    
+    res = Split(rtbFileView.Text, vbLf)
+    
+    For i = 0 To UBound(res)
+        If i < 4 Then
+            res(i) = ""
         End If
+        
+    Next i
+    
+    rtbFileView.Text = Join(res, vbLf)
+    
+    rtbFileView.Text = Replace(rtbFileView.Text, vbLf & vbLf & vbLf & vbLf, "")
+    
+    rtbFileView.SelStart = 0
+    rtbFileView.SelLength = Len(rtbFileView.Text)
+    rtbFileView.SelColor = RGB(200, 200, 200)
+    
+    res = Split(rtbFileView.Text, vbLf)
+    
+    lastPos = 0
+    For i = 0 To UBound(res)
+        rtbFileView.SelStart = lastPos + i
+        rtbFileView.SelLength = Len(res(i))
+        If Left(res(i), 1) = "+" Then
+            rtbFileView.SelColor = RGB(30, 220, 20)
+        ElseIf Left(res(i), 1) = "-" Then
+            rtbFileView.SelColor = RGB(250, 30, 0)
+        ElseIf Left(res(i), 2) = "@@" Then
+            rtbFileView.SelColor = RGB(50, 30, 220)
+        End If
+        lastPos = lastPos + Len(res(i))
     Next i
     
     
     
+    'Call LoadSyntaxFile("sytax\vbsyntax.txt")
+    'rtbFileView.TextRTF = Highlight("some keyword int")
 End Sub

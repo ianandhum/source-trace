@@ -65,7 +65,7 @@ End Function
 
 
 
-Public Function updateSingleColumn(col As String, value As String, condition As String, dataType As Integer, tableName As String) As Integer
+Public Function updateSingleColumn(Col As String, value As String, condition As String, dataType As Integer, tableName As String) As Integer
     If DbConnection.State = adStateOpen Then
         Dim result As New Recordset
         Dim paramValue As ADODB.Parameter
@@ -75,7 +75,7 @@ Public Function updateSingleColumn(col As String, value As String, condition As 
         
         Set runCmd = New ADODB.Command
         
-        query = "UPDATE " & tableName & " SET " & col & " = ? WHERE " & condition
+        query = "UPDATE " & tableName & " SET " & Col & " = ? WHERE " & condition
         
         Set paramValue = runCmd.CreateParameter()
         paramValue.value = value
