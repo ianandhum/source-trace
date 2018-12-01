@@ -39,6 +39,7 @@ End Sub
 'Generic function to run a sql query with current connection
 Public Function runQuery(query As String) As Recordset
     If DbConnection.State = adStateOpen Then
+        
         Dim result As New Recordset
         With result
             .ActiveConnection = DbConnection

@@ -222,13 +222,13 @@ Private Sub setDataDefinitions()
 End Sub
 
 
-Private Function getNullIfEmpty(data As Variant)
+Private Function getNullIfEmpty(Data As Variant)
     Dim result As String
     
-    If IsEmpty(data) Or data = "" Then
+    If IsEmpty(Data) Or Data = "" Then
         result = "NULL"
     Else
-        result = data
+        result = Data
     End If
     getNullIfEmpty = result
 End Function

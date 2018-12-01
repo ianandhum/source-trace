@@ -22,6 +22,49 @@ Begin VB.Form frmProjectView
       BorderStyle     =   0  'None
       ForeColor       =   &H8000000B&
       Height          =   1275
+      Index           =   2
+      Left            =   3810
+      ScaleHeight     =   1275
+      ScaleWidth      =   1605
+      TabIndex        =   16
+      Top             =   90
+      Width           =   1605
+      Begin VB.Image imgNavTile 
+         Height          =   855
+         Index           =   2
+         Left            =   225
+         Picture         =   "frmProjectView.frx":0000
+         Stretch         =   -1  'True
+         Top             =   15
+         Width           =   1155
+      End
+      Begin VB.Label lblNavTile 
+         Alignment       =   2  'Center
+         BackStyle       =   0  'Transparent
+         Caption         =   "Push"
+         BeginProperty Font 
+            Name            =   "Segoe UI"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   300
+         Index           =   2
+         Left            =   60
+         TabIndex        =   17
+         Top             =   915
+         Width           =   1500
+      End
+   End
+   Begin VB.PictureBox pbxNavTiles 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00EEEE0E&
+      BorderStyle     =   0  'None
+      ForeColor       =   &H8000000B&
+      Height          =   1275
       Index           =   1
       Left            =   2025
       ScaleHeight     =   1275
@@ -53,7 +96,7 @@ Begin VB.Form frmProjectView
          Height          =   855
          Index           =   1
          Left            =   225
-         Picture         =   "frmProjectView.frx":0000
+         Picture         =   "frmProjectView.frx":7F03
          Stretch         =   -1  'True
          Top             =   15
          Width           =   1155
@@ -170,7 +213,7 @@ Begin VB.Form frmProjectView
             Height          =   855
             Index           =   0
             Left            =   255
-            Picture         =   "frmProjectView.frx":7F03
+            Picture         =   "frmProjectView.frx":FE06
             Stretch         =   -1  'True
             Top             =   15
             Width           =   1155
@@ -233,10 +276,10 @@ Begin VB.Form frmProjectView
       _Version        =   393217
       BackColor       =   16645629
       BorderStyle     =   0
-      Enabled         =   -1  'True
+      ReadOnly        =   -1  'True
       ScrollBars      =   3
       Appearance      =   0
-      TextRTF         =   $"frmProjectView.frx":FE06
+      TextRTF         =   $"frmProjectView.frx":17D09
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Consolas"
          Size            =   9.75
@@ -409,6 +452,20 @@ Private Sub initTreeView()
     FileSize = fileM.createTreeView(SearchPath, FindStr, NumFiles, NumDirs, tvFileNodes)
     Screen.MousePointer = vbDefault
 
+End Sub
+
+Private Sub imgNavTile_Click(Index As Integer)
+    frmTaskView.Show
+    frmTaskView.WindowState = 2
+End Sub
+
+Private Sub imgNavTile_MouseDown(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
+    lblNavTile(Index).ForeColor = &HAF7823
+End Sub
+
+Private Sub imgNavTile_MouseUp(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
+    lblNavTile(Index).ForeColor = &H0
+    
 End Sub
 
 Private Sub imgNavTile_MouseMove(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)

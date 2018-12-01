@@ -33,6 +33,9 @@ Begin VB.MDIForm frmMDIMain
       Begin VB.Menu mnu_view_tasks 
          Caption         =   "Tasks"
       End
+      Begin VB.Menu mnu_view_snippet 
+         Caption         =   "Snippets"
+      End
    End
    Begin VB.Menu mnu_top_repo 
       Caption         =   "Repository"
@@ -79,6 +82,12 @@ Private Sub mnu_view_Projects_Click()
     frmProjectView.WindowState = 2
 End Sub
 
+Private Sub mnu_view_snippet_Click()
+    hideAllWindows
+    frmSnippetView.Show
+    frmSnippetView.WindowState = 2
+End Sub
+
 Private Sub mnu_view_tasks_Click()
     hideAllWindows
     frmTaskView.Show
@@ -90,4 +99,5 @@ On Error Resume Next
     Unload frmNewProject
     Unload frmProjectView
     Unload frmTaskView
+    Unload frmSnippetView
 End Sub
