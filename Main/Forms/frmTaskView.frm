@@ -169,7 +169,7 @@ Begin VB.Form frmTaskView
             Left            =   120
             TabIndex        =   7
             Top             =   120
-            Width           =   1935
+            Width           =   2595
             WordWrap        =   -1  'True
          End
          Begin VB.Label lblTaskTileContent 
@@ -477,7 +477,7 @@ Public Sub addNewTile(Index As Integer, header As String, content As String, dt 
     
     Call addTile(Index, header, content, dt, "Tile_0")
     
-    initTaskView
+    refreshTaskList
     
     
 End Sub
@@ -569,21 +569,11 @@ End Sub
 
 
 Private Sub pbxReset_Click()
-    pbxContent.Visible = False
-    Screen.MousePointer = vbHourglass
-    resetControls
-    initTaskView
-    Screen.MousePointer = vbDefault
-    pbxContent.Visible = True
+    refreshTaskList
 End Sub
 
 Private Sub lblResetIcon_Click()
-    pbxContent.Visible = False
-    Screen.MousePointer = vbHourglass
-    resetControls
-    initTaskView
-    Screen.MousePointer = vbDefault
-    pbxContent.Visible = True
+    refreshTaskList
 End Sub
 
 
@@ -685,8 +675,7 @@ Private Sub pbxCard_DragDrop(Index As Integer, SourceHandler As Control, X As Si
     tTask.cardName = lblCardHeader(Index).Caption
     tTask.SaveChanges
     
-    
-    'initTaskView
+    refreshTaskList
     
     '__________________________>
     
@@ -722,9 +711,9 @@ Private Sub pbxContent_DragDrop(Source As Control, X As Single, Y As Single)
         pbxContent.BackColor = &HFCFCFC
         lblDeleteNotice.Visible = False
         pbxCard(Source.Container.Container.Index).BackColor = preserveBackColor
+        refreshTaskList
         
     End If
-    
 End Sub
 
 Private Sub pbxContent_DragOver(Source As Control, X As Single, Y As Single, State As Integer)
@@ -1015,4 +1004,14 @@ Private Sub resetControls()
     ReDim tileCounts(1)
     
     Screen.MousePointer = vbNormal
+End Sub
+
+Private Sub refreshTaskList()
+
+    pbxContent.Visible = False
+    Screen.MousePointer = vbHourglass
+    resetControls
+    initTaskView
+    Screen.MousePointer = vbDefault
+    pbxContent.Visible = True
 End Sub

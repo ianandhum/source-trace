@@ -18,14 +18,14 @@ Attribute VB_Ext_KEY = "Top_Level" ,"Yes"
 'local variable to hold collection
 Private mCol As Collection
 
-Public Function Add(CardName As String, CardDBName As String, DBIndex As Integer, Counts As Integer, Optional ByVal sKey As String) As TaskCard
+Public Function Add(cardName As String, CardDBName As String, DBIndex As Integer, Counts As Integer, Optional ByVal sKey As String) As TaskCard
     'create a new object
     Dim objNewMember As TaskCard
     Set objNewMember = New TaskCard
 
 
     'set the properties passed into the method
-    objNewMember.CardName = CardName
+    objNewMember.cardName = cardName
     objNewMember.CardDBName = CardDBName
     objNewMember.DBIndex = DBIndex
     objNewMember.Counts = Counts

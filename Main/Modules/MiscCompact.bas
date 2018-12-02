@@ -4,6 +4,19 @@ Option Explicit
 'The following is code is from different sources and used  as  workaround for VB specifc issues
 'Appropriate Credits will be provided for each part
 
+'Create Directory tree if it does not exist
+Private Declare Function MakeSureDirectoryPathExists Lib "imagehlp.dll" (ByVal lpPath As String) As Long
+
+'Select App path
+
+Public Const ssfCOMMONAPPDATA = &H23
+Public Const ssfLOCALAPPDATA = &H1C
+Public Const ssfAPPDATA = &H1A
+
+'Create GUID -- VBForms
+Private Declare Function CoCreateGuid Lib "ole32" (id As Any) As Long
+Private Declare Function GetTickCount Lib "kernel32" () As Long
+ 
 
 'Hand cursor -- from MSDN
 Public Const IDC_HAND = 32649&
@@ -96,5 +109,38 @@ Public Function SetTopMostWindow(hwnd As Long, Topmost As Boolean) _
       SetTopMostWindow = False
    End If
 End Function
+
+
+'Create GUID -- from VBForms
+Public Function CreateUID() As String
+Dim bytID(1 To 16)      As Byte
+Dim intIndex            As Integer
+Dim strUID              As String
+    Call CoCreateGuid(bytID(1))
+    For intIndex = 1 To 16
+        If bytID(intIndex) < CByte(16) Then
+            strUID = strUID & "0"
+        End If
+        strUID = strUID & Hex$(bytID(intIndex))
+        Select Case intIndex
+            Case 4, 6, 8, 10
+                strUID = strUID & "-"
+        End Select
+    Next intIndex
+    CreateUID = strUID
+End Function
+
+Public Function GetAppPath(locType As Double) As String
+
+   GetAppPath = CreateObject("Shell.Application").NameSpace(ssfAPPDATA).Self.path
+
+End Function
+
+'Create directory tree if it doesnot exist - VBForms
+
+Public Sub CreateFolder(ByVal pstrFolder As String)
+    If Right$(pstrFolder, 1) <> "\" Then pstrFolder = pstrFolder & "\"
+    MakeSureDirectoryPathExists pstrFolder
+End Sub
 
 

@@ -24,7 +24,7 @@ Begin VB.Form frmNewTask
       _ExtentY        =   661
       _Version        =   393216
       CalendarBackColor=   16777215
-      Format          =   160759809
+      Format          =   160497665
       CurrentDate     =   43434
    End
    Begin VB.TextBox txtNewTaskDesc 
@@ -118,6 +118,7 @@ End Sub
 
 Private Sub Form_Activate()
     txtNewTask.SetFocus
+    dtNewTaskDueDate.value = DateTime.Date
 End Sub
 
 Private Sub Form_Load()

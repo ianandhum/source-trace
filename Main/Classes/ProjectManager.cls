@@ -44,8 +44,9 @@ Public Sub loadProjectsFromDB(Optional condition As String = " 1=1 ")
     If querySuccess Then
         Set mvarProjects = Nothing
         Set mvarProjects = New Collection
-        Dim tmpProject As New Project
+        Dim tmpProject As Project
         While Not projectRecords.EOF
+            Set tmpProject = New Project
             tmpProject.initProjectWithRecord projectRecords
             If mvarIsDebug Then tmpProject.debugProject "Displaying Projects"
             mvarProjects.Add tmpProject

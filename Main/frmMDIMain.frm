@@ -13,8 +13,14 @@ Begin VB.MDIForm frmMDIMain
    Begin VB.Menu mnu_top_file 
       Caption         =   "File"
       Index           =   0
-      Begin VB.Menu mnu_file_new_prj 
-         Caption         =   "New Project"
+      Begin VB.Menu mnu_new 
+         Caption         =   "New"
+         Begin VB.Menu mnu_file_new_prj 
+            Caption         =   "Project"
+         End
+         Begin VB.Menu mnu_new_sni 
+            Caption         =   "Snippet"
+         End
       End
       Begin VB.Menu mnu_quit 
          Caption         =   "Quit"
@@ -27,6 +33,9 @@ Begin VB.MDIForm frmMDIMain
    Begin VB.Menu mnu_top_view 
       Caption         =   "View"
       Index           =   2
+      Begin VB.Menu mnu_view_overview 
+         Caption         =   "Overview"
+      End
       Begin VB.Menu mnu_view_Projects 
          Caption         =   "Projects"
       End
@@ -59,6 +68,7 @@ Dim cmd As New CmdRunner
 
 Private Sub MDIForm_Load()
     InitializeConnection
+    Call changeMDIView(frmOverView)
 End Sub
 
 Private Sub MDIForm_QueryUnload(Cancel As Integer, UnloadMode As Integer)
@@ -70,34 +80,52 @@ Private Sub mnu_file_new_prj_Click()
     SetTopMostWindow frmNewProject.hwnd, True
 End Sub
 
-
+Private Sub mnu_new_sni_Click()
+    frmNewSnippet.Show
+    SetTopMostWindow frmNewSnippet.hwnd, True
+End Sub
 
 Private Sub mnu_quit_Click()
     End
 End Sub
 
-Private Sub mnu_view_Projects_Click()
-    hideAllWindows
-    frmProjectView.Show
-    frmProjectView.WindowState = 2
-End Sub
-
-Private Sub mnu_view_snippet_Click()
-    hideAllWindows
+Private Sub mnu_top_repo_Click(Index As Integer)
+    frmSnippetView.SnippetId = 25
     frmSnippetView.Show
     frmSnippetView.WindowState = 2
 End Sub
 
-Private Sub mnu_view_tasks_Click()
-    hideAllWindows
-    frmTaskView.Show
-    frmTaskView.WindowState = 2
+Private Sub mnu_view_overview_Click()
+    
+    Call changeMDIView(frmOverView)
 End Sub
 
-Private Sub hideAllWindows()
+Private Sub mnu_view_Projects_Click()
+    
+    Call changeMDIView(frmProjectView)
+End Sub
+
+Private Sub mnu_view_snippet_Click()
+    
+    Call changeMDIView(frmSnippetList)
+End Sub
+
+Private Sub mnu_view_tasks_Click()
+    Call changeMDIView(frmTaskView)
+End Sub
+
+Public Sub changeMDIView(source As Form)
+    
+    hideAllWindows
+    source.Show
+    source.WindowState = 2
+End Sub
+
+Public Sub hideAllWindows()
 On Error Resume Next
     Unload frmNewProject
     Unload frmProjectView
     Unload frmTaskView
     Unload frmSnippetView
+    Unload frmOverView
 End Sub

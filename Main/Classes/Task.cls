@@ -66,8 +66,8 @@ Public Sub initTaskWithRecord(taskRecord As Recordset)
             errStatus = True
         End If
         
-        If Not IsNull(taskRecord!Name) Then
-            mvarTaskName = taskRecord!Name
+        If Not IsNull(taskRecord!name) Then
+            mvarTaskName = taskRecord!name
         Else
             errStatus = True
         End If
@@ -168,6 +168,11 @@ Public Function SaveChanges() As Integer
         SaveChanges = updateDB(arrayCols, arrayData, arrayDataTypes, dbTaskTable, "task_id = " & mvarTaskId)
     ElseIf mvarIsDirty And mvarIsNew Then
         SaveChanges = insertToDB(arrayCols, arrayData, arrayDataTypes, dbTaskTable)
+        Dim rec As New Recordset
+        Set rec = runQuery("SELECT MAX(task_id) as last_id from tb_task")
+        If Not rec.EOF Then
+            mvarTaskId = rec!last_id
+        End If
     ElseIf mvarIsDeleted And mvarIsLoaded Then
         SaveChanges = deleteFromDB(dbTaskTable, "task_id = " & mvarTaskId)
     Else

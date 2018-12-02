@@ -81,17 +81,17 @@ End Property
 
 
 
-Public Property Let CardName(ByVal vData As String)
+Public Property Let cardName(ByVal vData As String)
 'used when assigning a value to the property, on the left side of an assignment.
 'Syntax: X.CardName = 5
     mvarCardName = vData
 End Property
 
 
-Public Property Get CardName() As String
+Public Property Get cardName() As String
 'used when retrieving value of a property, on the right side of an assignment.
 'Syntax: Debug.Print X.CardName
-    CardName = mvarCardName
+    cardName = mvarCardName
 End Property
 
 
