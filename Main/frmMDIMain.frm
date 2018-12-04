@@ -26,10 +26,6 @@ Begin VB.MDIForm frmMDIMain
          Caption         =   "Quit"
       End
    End
-   Begin VB.Menu mnu_top_edit 
-      Caption         =   "Edit"
-      Index           =   1
-   End
    Begin VB.Menu mnu_top_view 
       Caption         =   "View"
       Index           =   2
@@ -45,14 +41,6 @@ Begin VB.MDIForm frmMDIMain
       Begin VB.Menu mnu_view_snippet 
          Caption         =   "Snippets"
       End
-   End
-   Begin VB.Menu mnu_top_repo 
-      Caption         =   "Repository"
-      Index           =   3
-   End
-   Begin VB.Menu mnu_top_tools 
-      Caption         =   "Tools"
-      Index           =   4
    End
    Begin VB.Menu mnu_top_help 
       Caption         =   "Help"
@@ -89,12 +77,6 @@ Private Sub mnu_quit_Click()
     End
 End Sub
 
-Private Sub mnu_top_repo_Click(Index As Integer)
-    frmSnippetView.SnippetId = 25
-    frmSnippetView.Show
-    frmSnippetView.WindowState = 2
-End Sub
-
 Private Sub mnu_view_overview_Click()
     
     Call changeMDIView(frmOverView)
@@ -102,7 +84,7 @@ End Sub
 
 Private Sub mnu_view_Projects_Click()
     
-    Call changeMDIView(frmProjectView)
+    Call changeMDIView(frmProjectList)
 End Sub
 
 Private Sub mnu_view_snippet_Click()
@@ -114,11 +96,11 @@ Private Sub mnu_view_tasks_Click()
     Call changeMDIView(frmTaskView)
 End Sub
 
-Public Sub changeMDIView(source As Form)
+Public Sub changeMDIView(Source As Form)
     
     hideAllWindows
-    source.Show
-    source.WindowState = 2
+    Source.Show
+    Source.WindowState = 2
 End Sub
 
 Public Sub hideAllWindows()
@@ -128,4 +110,8 @@ On Error Resume Next
     Unload frmTaskView
     Unload frmSnippetView
     Unload frmOverView
+End Sub
+
+Public Sub filterMenu(mnuList() As Integer)
+    
 End Sub

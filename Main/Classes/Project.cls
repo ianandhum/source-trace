@@ -336,7 +336,7 @@ End Property
 
 
 Public Property Get Location() As String
-    Tags = mvarLocation
+    Location = mvarLocation
 End Property
 
 
@@ -388,6 +388,6 @@ End Property
 
 
 Public Property Get ProjectId() As Integer
-    ProjectId = mvarTaskId
+    ProjectId = mvarProjectId
 End Property
 

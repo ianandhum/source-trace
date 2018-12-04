@@ -371,7 +371,6 @@ Begin VB.Form frmSnippetView
       _ExtentY        =   7699
       _Version        =   393217
       BorderStyle     =   0
-      Enabled         =   -1  'True
       ScrollBars      =   3
       Appearance      =   0
       TextRTF         =   $"frmSnippetView.frx":0000
@@ -499,7 +498,7 @@ Private Sub SetupSnippet()
             
             lblInfoHead.Caption = snippetObj.SnippetName
             lblInfoDesc.Caption = snippetObj.Description
-            lblInfoLang.Caption = UCase(snippetObj.SnippetType)
+            lblInfoLang.Caption = UCase(snippetObj.snippetType)
             If fso.FileExists(snippetObj.Location) Then
                 rtbSnippetView.fileName = snippetObj.Location
             End If
@@ -544,7 +543,7 @@ Private Sub alignContainers()
     rtbSnippetView.Left = 360
     rtbSnippetView.width = Me.width - lblLineNos.width
     rtbSnippetView.Top = pbxInfoLoc.height + pbxInfoLoc.Top
-    rtbSnippetView.height = Me.height - pbxHead.height
+    rtbSnippetView.height = Me.height - pbxHead.height - pbxInfoLoc.height
     
     rtbSnippetView.Visible = True
     pbxHead.Visible = True

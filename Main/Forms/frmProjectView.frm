@@ -139,11 +139,11 @@ Begin VB.Form frmProjectView
       BorderStyle     =   0  'None
       ForeColor       =   &H80000008&
       Height          =   1935
-      Left            =   3465
+      Left            =   3480
       ScaleHeight     =   1935
       ScaleWidth      =   17535
       TabIndex        =   5
-      Top             =   8085
+      Top             =   8025
       Width           =   17535
       Begin VB.Frame frmStats 
          Appearance      =   0  'Flat
@@ -155,6 +155,7 @@ Begin VB.Form frmProjectView
          Left            =   1200
          TabIndex        =   8
          Top             =   120
+         Visible         =   0   'False
          Width           =   5895
       End
       Begin VB.Frame frmStats 
@@ -167,6 +168,7 @@ Begin VB.Form frmProjectView
          Left            =   4320
          TabIndex        =   7
          Top             =   600
+         Visible         =   0   'False
          Width           =   5895
       End
       Begin VB.Frame frmStats 
@@ -180,6 +182,7 @@ Begin VB.Form frmProjectView
          Left            =   450
          TabIndex        =   6
          Top             =   90
+         Visible         =   0   'False
          Width           =   5895
       End
    End
@@ -276,6 +279,7 @@ Begin VB.Form frmProjectView
       _Version        =   393217
       BackColor       =   16645629
       BorderStyle     =   0
+      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   3
       Appearance      =   0
@@ -378,27 +382,17 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Dim WithEvents runCmd As CmdRunner
 Attribute runCmd.VB_VarHelpID = -1
+Public ProjectId As Integer
+Private prj As Project
 Dim SearchPath As String, FindStr As String
 
 Private InitialControlList() As ControlInitial
 
-Private Sub btnFrmStats_Click(Index As Integer)
-For Each frmStat In frmStats
-    frmStat.Visible = False
-    
-Next
-For Each btnStat In btnFrmStats
-    btnStat.Enabled = True
-    
-Next
-frmStats(Index).Visible = True
-btnFrmStats(Index).Enabled = False
-
-End Sub
-
 Private Sub Form_Load()
     InitialControlList = GetLocation(Me)
     ReSizePosForm Me, Me.height, Me.width, Me.Left, Me.Top, True
+    
+    setupProject
     ResizeShapes
     initNavTiles
     initTreeView
@@ -425,12 +419,43 @@ Private Sub ResizeShapes()
         frmStats(i).width = pbxStats.width
         frmStats(i).Left = 0
         frmStats(i).Top = 0
-        
+        frmStats(i).Visible = True
     Next i
     
     
     
 End Sub
+
+Private Sub btnFrmStats_Click(Index As Integer)
+For Each frmStat In frmStats
+    frmStat.Visible = False
+    
+Next
+For Each btnStat In btnFrmStats
+    btnStat.Enabled = True
+    
+Next
+frmStats(Index).Visible = True
+btnFrmStats(Index).Enabled = False
+
+End Sub
+
+
+
+'functions
+Private Sub setupProject()
+    Set prj = New Project
+    If Not ProjectId > 1 Then
+        MsgBox "Message Object Error", vbCritical
+        Exit Sub
+    End If
+    
+    
+    prj.LoadSingleton (ProjectId)
+    
+    
+End Sub
+
 
 Private Sub initNavTiles()
 
@@ -445,9 +470,13 @@ Private Sub initTreeView()
     Dim NumFiles As Integer, NumDirs As Integer
     Dim fileM As New FileManager
     
+    If Not prj.IsLoaded Then
+        Exit Sub
+    End If
+    
     
     Screen.MousePointer = vbHourglass
-    SearchPath = "C:\Users\Code\Documents\SourceTrace\SRC"
+    SearchPath = prj.Location
     FindStr = "*"
     FileSize = fileM.createTreeView(SearchPath, FindStr, NumFiles, NumDirs, tvFileNodes)
     Screen.MousePointer = vbDefault

@@ -42,7 +42,7 @@ Begin VB.Form frmOverView
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00606060&
+         ForeColor       =   &H00000000&
          Height          =   555
          Index           =   0
          Left            =   1170
@@ -93,7 +93,7 @@ Begin VB.Form frmOverView
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00606060&
+         ForeColor       =   &H00000000&
          Height          =   435
          Index           =   0
          Left            =   1155
@@ -114,7 +114,7 @@ Begin VB.Form frmOverView
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00606060&
+         ForeColor       =   &H00000000&
          Height          =   315
          Index           =   0
          Left            =   90
@@ -123,6 +123,7 @@ Begin VB.Form frmOverView
          Width           =   990
       End
       Begin VB.Label lblTaskTileTime 
+         Alignment       =   2  'Center
          BackColor       =   &H00EAF3EC&
          BackStyle       =   0  'Transparent
          Caption         =   "2"
@@ -135,7 +136,7 @@ Begin VB.Form frmOverView
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00808080&
+         ForeColor       =   &H00000000&
          Height          =   990
          Index           =   0
          Left            =   150
@@ -215,7 +216,7 @@ Begin VB.Form frmOverView
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00606060&
+         ForeColor       =   &H00000000&
          Height          =   255
          Index           =   0
          Left            =   5730
@@ -235,7 +236,7 @@ Begin VB.Form frmOverView
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00606060&
+         ForeColor       =   &H00000000&
          Height          =   615
          Index           =   0
          Left            =   5685
@@ -255,7 +256,7 @@ Begin VB.Form frmOverView
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00606060&
+         ForeColor       =   &H00000000&
          Height          =   255
          Index           =   0
          Left            =   225
@@ -275,7 +276,7 @@ Begin VB.Form frmOverView
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00606060&
+         ForeColor       =   &H00000000&
          Height          =   255
          Index           =   0
          Left            =   225
@@ -423,7 +424,7 @@ End Sub
 
 
 Private Sub pbxPrjTile_MouseDown(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
-    Call changePrjTileStyle(Index, &HFFAA77, False)
+    Call changePrjTileStyle(Index, &HFFDDBB, False)
     
 End Sub
 

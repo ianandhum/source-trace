@@ -389,7 +389,7 @@ Begin VB.Form frmTaskView
             Width           =   975
          End
       End
-      Begin VB.Label Label1 
+      Begin VB.Label lblPrjDesc 
          Caption         =   "It is a simple application to view and orgainize  data "
          Height          =   495
          Left            =   240
@@ -612,10 +612,6 @@ End Sub
 
 
 
-
-Private Sub pbxTaskTile_Click(Index As Integer)
-    MsgBox "EHE"
-End Sub
 
 Private Sub txtTempEdit_KeyPress(KeyAscii As Integer)
     
