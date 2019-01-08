@@ -67,8 +67,8 @@ Public Sub initProjectWithRecord(projectRecord As Recordset)
             errStatus = True
         End If
         
-        If Not IsNull(projectRecord!Name) Then
-            mvarProjectName = projectRecord!Name
+        If Not IsNull(projectRecord!name) Then
+            mvarProjectName = projectRecord!name
         Else
             errStatus = True
         End If
@@ -166,6 +166,11 @@ Public Function SaveChanges() As Integer
         SaveChanges = updateDB(arrayCols, arrayData, arrayDataTypes, dbProjectTable, "project_id = " & mvarProjectId)
     ElseIf mvarIsDirty And mvarIsNew Then
         SaveChanges = insertToDB(arrayCols, arrayData, arrayDataTypes, dbProjectTable)
+        Dim rec As New Recordset
+        Set rec = runQuery("SELECT MAX(project_id) as last_id from tb_project")
+        If Not rec.EOF Then
+            mvarProjectId = rec!last_id
+        End If
     ElseIf mvarIsDeleted And mvarIsLoaded Then
         SaveChanges = deleteFromDB(dbProjectTable, "project_id = " & mvarProjectId)
     Else
@@ -222,13 +227,13 @@ Private Sub setDataDefinitions()
 End Sub
 
 
-Private Function getNullIfEmpty(data As Variant)
+Private Function getNullIfEmpty(Data As Variant)
     Dim result As String
     
-    If IsEmpty(data) Or data = "" Then
+    If IsEmpty(Data) Or Data = "" Then
         result = "NULL"
     Else
-        result = data
+        result = Data
     End If
     getNullIfEmpty = result
 End Function
@@ -331,7 +336,7 @@ End Property
 
 
 Public Property Get Location() As String
-    Tags = mvarLocation
+    Location = mvarLocation
 End Property
 
 
@@ -383,6 +388,6 @@ End Property
 
 
 Public Property Get ProjectId() As Integer
-    ProjectId = mvarTaskId
+    ProjectId = mvarProjectId
 End Property
 

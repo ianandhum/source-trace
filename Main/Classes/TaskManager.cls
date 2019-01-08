@@ -18,10 +18,12 @@ Private mvarTasks As Collection 'local copy
 Private mvarIsLoaded As Boolean 'local copy
 Private mvarTaskCount As Integer 'local copy
 Private mvarIsDebug As Integer 'local copy
+Dim tmpTask As Task
 
 
 Private Sub Class_Initialize()
     mvarTaskCount = 0
+    Set mvarTasks = New Collection
 End Sub
 
 Public Function SaveChanges() As Integer
@@ -42,14 +44,13 @@ Public Sub loadTasksFromDB(Optional condition As String = " 1=1 ")
     Dim taskRecords As Recordset
     Set taskRecords = selectFromDB(dbTaskTable, condition)
     If querySuccess Then
-        Set mvarTasks = Nothing
-        Set mvarTasks = New Collection
-        Dim tmpTask As New Task
         While Not taskRecords.EOF
+            Set tmpTask = New Task
             tmpTask.initTaskWithRecord taskRecords
             If mvarIsDebug Then tmpTask.debugTask "Displaying Tasks"
             mvarTasks.Add tmpTask
             taskRecords.MoveNext
+            
         Wend
         mvarTaskCount = mvarTasks.Count
         mvarIsLoaded = True
@@ -58,13 +59,23 @@ Public Sub loadTasksFromDB(Optional condition As String = " 1=1 ")
     End If
 End Sub
 
-Public Sub removeTask(taskId As Integer)
+Public Sub removeTask(TaskId As Integer)
     Dim tmpTask As New Task
-    tmpTask.LoadSingleton (taskId)
+    tmpTask.LoadSingleton (TaskId)
     If tmpTask.IsLoaded Then
         tmpTask.Delete
         tmpTask.SaveChanges
     End If
+End Sub
+
+
+Public Sub debugTasks()
+    For i = 1 To mvarTasks.Count
+        Debug.Print "-------------"
+        Debug.Print "TaskName: " & mvarTasks.Item(i).TaskName
+        Debug.Print "TaskId: " & mvarTasks.Item(i).TaskId
+    Next i
+    
 End Sub
 
 Public Sub updateTaskInfo(updatedTask As Task)
@@ -79,9 +90,9 @@ Public Function addTask(newTask As Task) As Integer
     End If
 End Function
 
-Public Function getTaskById(ByVal taskId As Integer) As Task
+Public Function getTaskById(ByVal TaskId As Integer) As Task
     Dim tmpTask As New Task
-    tmpTask.LoadSingleton taskId
+    tmpTask.LoadSingleton TaskId
     Set getTaskById = tmpTask
     
 End Function
@@ -126,3 +137,6 @@ Public Property Get Count() As Integer
 End Property
 
 
+Private Sub Class_Terminate()
+ Set mvarTasks = Nothing
+End Sub

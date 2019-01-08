@@ -33,6 +33,9 @@ Private arrayData() As String
 Private arrayCols() As String
 Private arrayDataTypes() As Integer
 
+Private mvarProjectId As Integer 'local copy
+
+Private mvarCardName As String 'local copy
 
 Public Property Get IsNew() As Boolean
 'used when retrieving value of a property, on the right side of an assignment.
@@ -57,15 +60,14 @@ Public Sub initTaskWithRecord(taskRecord As Recordset)
     Dim errStatus As Boolean
     errStatus = False
     If taskRecord.State = adStateOpen And Not taskRecord.EOF Then
-        
         If Not IsNull(taskRecord!task_id) Then
             mvarTaskId = taskRecord!task_id
         Else
             errStatus = True
         End If
         
-        If Not IsNull(taskRecord!Name) Then
-            mvarTaskName = taskRecord!Name
+        If Not IsNull(taskRecord!name) Then
+            mvarTaskName = taskRecord!name
         Else
             errStatus = True
         End If
@@ -109,6 +111,17 @@ Public Sub initTaskWithRecord(taskRecord As Recordset)
         Else
             errStatus = True
         End If
+        
+        If Not IsNull(taskRecord!card_name) Then
+            mvarCardName = taskRecord!card_name
+        Else
+            errStatus = True
+        End If
+        If Not IsNull(taskRecord!project_id) Then
+            mvarProjectId = taskRecord!project_id
+        Else
+            errStatus = True
+        End If
     Else
         errStatus = True
     End If
@@ -131,6 +144,8 @@ Public Sub debugTask(Optional currTaskName As String = "Task")
     Debug.Print "TaskIsLoaded :" & mvarIsLoaded
     Debug.Print "TaskIsDirty :" & mvarIsDirty
     Debug.Print "TaskIsNew :" & mvarIsNew
+    Debug.Print "ProjectId :" & mvarProjectId
+    Debug.Print "CardName :" & mvarCardName
     Debug.Print "-----------------------"
 End Sub
 
@@ -153,6 +168,11 @@ Public Function SaveChanges() As Integer
         SaveChanges = updateDB(arrayCols, arrayData, arrayDataTypes, dbTaskTable, "task_id = " & mvarTaskId)
     ElseIf mvarIsDirty And mvarIsNew Then
         SaveChanges = insertToDB(arrayCols, arrayData, arrayDataTypes, dbTaskTable)
+        Dim rec As New Recordset
+        Set rec = runQuery("SELECT MAX(task_id) as last_id from tb_task")
+        If Not rec.EOF Then
+            mvarTaskId = rec!last_id
+        End If
     ElseIf mvarIsDeleted And mvarIsLoaded Then
         SaveChanges = deleteFromDB(dbTaskTable, "task_id = " & mvarTaskId)
     Else
@@ -172,11 +192,13 @@ Private Sub SerializeForDB()
     arrayData(6) = mvarWeight
     arrayData(7) = mvarPreNode
     arrayData(8) = mvarStatus
+    arrayData(9) = mvarCardName
+    arrayData(10) = mvarProjectId
 End Sub
 
 Private Sub setDataDefinitions()
 
-    ReDim arrayCols(9)
+    ReDim arrayCols(11)
     arrayCols(0) = "name"
     arrayCols(1) = "description"
     arrayCols(2) = "start_date"
@@ -186,8 +208,10 @@ Private Sub setDataDefinitions()
     arrayCols(6) = "weight"
     arrayCols(7) = "pre_node"
     arrayCols(8) = "status"
+    arrayCols(9) = "card_name"
+    arrayCols(10) = "project_id"
 
-    ReDim arrayDataTypes(9)
+    ReDim arrayDataTypes(11)
     arrayDataTypes(0) = adVarChar
     arrayDataTypes(1) = adVarChar
     arrayDataTypes(2) = adDate
@@ -197,18 +221,20 @@ Private Sub setDataDefinitions()
     arrayDataTypes(6) = adDouble
     arrayDataTypes(7) = adInteger
     arrayDataTypes(8) = adVarChar
+    arrayDataTypes(9) = adVarChar
+    arrayDataTypes(10) = adInteger
     
-    ReDim arrayData(9)
+    ReDim arrayData(11)
     
 End Sub
 
 
-Private Function getNullIfEmpty(data As String)
+Private Function getNullIfEmpty(Data As String)
     Dim result As String
-    If data = "" Then
+    If Data = "" Then
         result = "NULL"
     Else
-        result = data
+        result = Data
     End If
     getNullIfEmpty = result
 End Function
@@ -390,4 +416,32 @@ Public Property Get TaskId() As Integer
     TaskId = mvarTaskId
 End Property
 
+Public Property Let cardName(ByVal vData As String)
+'used when assigning a value to the property, on the left side of an assignment.
+'Syntax: X.CardName = 5
+    mvarCardName = vData
+    mvarIsDirty = True
+End Property
 
+
+Public Property Get cardName() As String
+'used when retrieving value of a property, on the right side of an assignment.
+'Syntax: Debug.Print X.CardName
+    cardName = mvarCardName
+End Property
+
+
+
+Public Property Let ProjectId(ByVal vData As Integer)
+'used when assigning an Object to the property, on the left side of a Set statement.
+'Syntax: Set x.ProjectId = Form1
+    mvarProjectId = vData
+End Property
+
+
+Public Property Get ProjectId() As Integer
+'used when retrieving value of a property, on the right side of an assignment.
+'Syntax: Debug.Print X.ProjectId
+    ProjectId = mvarProjectId
+    mvarIsDirty = True
+End Property

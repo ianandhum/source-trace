@@ -287,7 +287,7 @@ Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
         Exit Sub
     End If
     
-    If MsgBox("Project will not be created if you choose Yes. Are you Sure?", vbYesNo, "New Project") = vbNo Then
+    If MsgBox("Cancel?", vbYesNo, "New Project") = vbNo Then
         Cancel = 1
         frmNewProject.Show
         SetTopMostWindow frmNewProject.hwnd, True

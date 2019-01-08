@@ -11,6 +11,8 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
+Attribute VB_Ext_KEY = "SavedWithClassBuilder6" ,"Yes"
+Attribute VB_Ext_KEY = "Top_Level" ,"Yes"
 'local variable(s) to hold property value(s)
 Private mvarProjects As Collection 'local copy
 Private mvarIsLoaded As Boolean 'local copy
@@ -42,8 +44,9 @@ Public Sub loadProjectsFromDB(Optional condition As String = " 1=1 ")
     If querySuccess Then
         Set mvarProjects = Nothing
         Set mvarProjects = New Collection
-        Dim tmpProject As New Project
+        Dim tmpProject As Project
         While Not projectRecords.EOF
+            Set tmpProject = New Project
             tmpProject.initProjectWithRecord projectRecords
             If mvarIsDebug Then tmpProject.debugProject "Displaying Projects"
             mvarProjects.Add tmpProject

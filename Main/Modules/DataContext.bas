@@ -5,6 +5,7 @@ Public querySuccess As Boolean
 'table names in the database
 Public Const dbTaskTable = "[SourceTrace].[dbo].[tb_task]"
 Public Const dbProjectTable = "[SourceTrace].[dbo].[tb_project]"
+Public Const dbSnippetTable = "[SourceTrace].[dbo].[tb_snippet]"
 
 'Connection String
 Private Const ConnectionString = "Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;User ID=virtualbox\Code;Initial Catalog=SourceTrace;Data Source=(local)\SQLEXPRESS"
@@ -39,13 +40,14 @@ End Sub
 'Generic function to run a sql query with current connection
 Public Function runQuery(query As String) As Recordset
     If DbConnection.State = adStateOpen Then
+        
         Dim result As New Recordset
         With result
             .ActiveConnection = DbConnection
             .CursorType = adOpenDynamic
             .CursorLocation = adUseClient
             .LockType = adLockOptimistic
-            .Source = query
+            .source = query
             .Open
         End With
         
